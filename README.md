@@ -1,7 +1,4 @@
-# Shinami Sponsored Transaction examples with Aptos Keyless
-This is a simple example of combining Shinami Gas Station sponsorship on the backend with frontend signing using an Aptos Keyless wallet tied to your application. The code for creating and storing Keyless accounts on the frontend is taken from the [Aptos Keyless Integration Guide](https://aptos.dev/en/build/guides/aptos-keyless/integration-guide). So, we recommend you start there first if you aren't familiar with integrating Keyless wallets into your application. 
-
-This code is not meant as a template for a production app, but instead as a quick way to show you how you can pass the relevant types between the frontend and backend in order to combine backend sponsorship with frontend signing from a KeylessAccount.
+# OpenEdu Demo Keyless
 
 # Setup and running the app
 1. Run `npm install` to install the dependencies
@@ -10,11 +7,3 @@ This code is not meant as a template for a production app, but instead as a quic
 4. In your .env.local file, uncomment and set the value for VITE_GOOGLE_CLIENT_ID to your Google OAauth client app id.
 5. Run `npm run dev` to run the server.  
 6. Visit [localhost](http://localhost:3000/) in your browser to use the app.
-
-
-
-For a Keyless wallet transaction, you will always sign on the frontend and sponsor on the backend. To use a different flow for where the transaction is built and where it is submitted, though, you can comment in and out the function you want` in `src/client/pages/TransactionPage.tsx`, e.g.:
-
-                    pendingTxResponse =
-                        //await keylessTxBEBuildFESubmit(message, keylessAccount);
-                        await keylessTxFEBuildBESubmit(message, keylessAccount);
