@@ -95,7 +95,6 @@ const TransactionPage = () => {
         }
     }
 
-
     // 1. Build a feePayer SimpleTransaction
     // 2. Sign the transaction with the user's Keyless wallet
     // 3. Ask the backend to sponsor and submit the transaction
@@ -115,8 +114,6 @@ const TransactionPage = () => {
 
         return pendingTx.data.pendingTx;
     }
-
-
 
     // 1. Ask the BE to build and sponsor a feePayer SimpleTransaction
     // 2. Sign the transaction with the user's Keyless wallet
