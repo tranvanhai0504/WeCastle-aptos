@@ -5,6 +5,7 @@ import useGetPlayer from "../hooks/useGetPlayer";
 import useCredit from "../hooks/useCredit";
 import { deleteKeylessAccount, getLocalKeylessAccount } from "../keyless";
 import { deleteEphemeralKeyPair } from "../ephemeral";
+import { useAlert } from "./AlertProvider";
 
 // Define an interface for the AuthProvider props
 interface AuthProviderProps {
@@ -19,13 +20,16 @@ export interface AuthContextType {
   isSuccessFetchPlayer: boolean;
   keylessWalletAddress: string;
   logout: () => Promise<void>;
+  setLatestHash: React.Dispatch<React.SetStateAction<string>>;
 }
 const AuthContext = createContext<AuthContextType | null>(null);
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [keylessWalletAddress, setkeylessWalletAddress] = useState<string>("");
+  const [latestHash, setLatestHash] = useState("");
   const { fetchPlayer } = useGetPlayer();
   const { fetchCredit } = useCredit();
+  const { setAlert } = useAlert();
 
   const keylessAccount = getLocalKeylessAccount();
 
@@ -34,6 +38,25 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       setkeylessWalletAddress(keylessAccount.accountAddress.toString());
     }
   }, [keylessAccount]);
+
+  useEffect(() => {
+    if (latestHash !== "") {
+      const alertContent = (
+        <>
+          Ready Transaction:{" "}
+          <a
+            href={`https://explorer.aptoslabs.com/txn/${latestHash}?network=testnet`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline"
+          >
+            {latestHash}
+          </a>
+        </>
+      );
+      setAlert(alertContent, "success");
+    }
+  }, [latestHash]);
 
   const [isSuccessFetchPlayer, setIsSuccessFetchPlayer] = useState(false);
   const [CreditInfor, setCreditInfor] = useState<number>(0);
@@ -93,6 +116,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         isSuccessFetchPlayer,
         keylessWalletAddress,
         logout,
+        setLatestHash,
       }}
     >
       {children}

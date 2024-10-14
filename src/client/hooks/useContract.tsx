@@ -38,6 +38,7 @@ const useContract = () => {
   const [error, setError] = useState<null | string>(null);
   const auth = useContext(AuthContext);
   const keylessAccount = getLocalKeylessAccount();
+
   const aptosConfig = new AptosConfig({
     network: Network.TESTNET,
   });
@@ -75,6 +76,7 @@ const useContract = () => {
       }
 
       if (onSuccess) {
+        if (executedTransaction) auth?.setLatestHash(executedTransaction?.hash);
         onSuccess(executedTransaction);
       }
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -136,6 +138,7 @@ const useContract = () => {
 
       console.log("Executed Transaction:", executedTransaction);
       if (onSuccess) {
+        if (executedTransaction) auth?.setLatestHash(executedTransaction?.hash);
         onSuccess(executedTransaction);
       }
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
