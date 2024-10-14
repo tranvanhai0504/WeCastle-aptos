@@ -2,7 +2,7 @@ import express from "express";
 import ViteExpress from "vite-express";
 import { GasStationClient } from "@shinami/clients/aptos";
 import dotenvFlow from "dotenv-flow";
-var cors = require("cors");
+import cors from "cors";
 
 import {
   Aptos,
