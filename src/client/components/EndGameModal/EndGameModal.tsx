@@ -7,7 +7,6 @@ interface EndGameModalProps {
 }
 
 const EndGameModal: React.FC<EndGameModalProps> = ({ open }) => {
-
   return (
     <Modal open={open} className="flex items-center justify-center">
       <div className="flex w-3/4 flex-col items-center justify-around rounded-lg bg-[#222222] px-6 py-10 text-white">
@@ -21,9 +20,14 @@ const EndGameModal: React.FC<EndGameModalProps> = ({ open }) => {
           >
             Play Again
           </button>
-          <Link to="/" className="rounded-lg bg-mainColor px-4 py-1">
+          <button
+            onClick={() => {
+              location.href = "/";
+            }}
+            className="rounded-lg bg-mainColor px-4 py-1"
+          >
             Back to Home
-          </Link>
+          </button>
         </div>
       </div>
     </Modal>

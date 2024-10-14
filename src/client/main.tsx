@@ -6,11 +6,11 @@ import { UnityGameProvider } from "./contexts/UnityGameProvider.tsx";
 import { AlertProvider } from "./contexts/AlertProvider.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <AuthProvider>
-    <AlertProvider>
+  <AlertProvider>
+    <AuthProvider>
       <UnityGameProvider>
         <App />
       </UnityGameProvider>
-    </AlertProvider>
-  </AuthProvider>
+    </AuthProvider>
+  </AlertProvider>
 );

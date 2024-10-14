@@ -27,13 +27,9 @@ const UnityGameComponent = forwardRef(
 
     const handleComponentEvent = useCallback(
       ({ detail }: CustomEvent<{ Score: number }>) => {
-
-        console.log("call event")
         const { Score } = detail;
 
         if (!auth) return;
-
-        console.log(auth.player);
 
         const round =
           auth.player.current_round !== 0 ? auth.player.current_round : 1;
