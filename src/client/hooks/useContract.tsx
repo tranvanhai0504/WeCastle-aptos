@@ -102,7 +102,6 @@ const useContract = () => {
     onError,
     onFinally,
   }: useContractProps) => {
-
     const privateKey = new Ed25519PrivateKey(ADMIN_PRIVATE_KEY);
     const adminAccount = Account.fromPrivateKey({ privateKey });
     if (!adminAccount) return;
@@ -119,7 +118,7 @@ const useContract = () => {
         },
         withFeePayer: true,
       });
-      
+
       const adminSenderAuthenticator = await aptos.signAsFeePayer({
         signer: adminAccount,
         transaction: txn,
@@ -176,7 +175,7 @@ const useContract = () => {
     });
 
     // Step 3. Ask the BE to sponsor and submit the transaction
-    const pendingTx = await axios.post("/sponsorAndSubmitTx", {
+    const pendingTx = await axios.post("/api/sponsorAndSubmitTx", {
       transaction: simpleTx.bcsToHex().toString(),
       senderAuth: senderSig.bcsToHex().toString(),
     });
