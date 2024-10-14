@@ -30,11 +30,15 @@ export const LoginPage = () => {
     storeEphemeralKeyPair(ephemeralKeyPair);
 
     const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
+    const URL = import.meta.env.VITE_URL;
+
     if (!GOOGLE_CLIENT_ID) {
       throw Error("GOOGLE_CLIENT_ID .env.local variable not set");
     }
     const NONCE = ephemeralKeyPair.nonce;
-    const REDIRECT_URI = "http://localhost:3000/googlecallback";
+    const REDIRECT_URI = URL
+      ? `${URL}/googlecallback`
+      : "http://localhost:3000/googlecallback";
     const LOGIN_URL = `https://accounts.google.com/o/oauth2/v2/auth?response_type=id_token&scope=openid+email+profile&nonce=${NONCE}&redirect_uri=${REDIRECT_URI}&client_id=${GOOGLE_CLIENT_ID}`;
     window.location.href = LOGIN_URL;
   };
