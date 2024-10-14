@@ -30,22 +30,10 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const keylessAccount = getLocalKeylessAccount();
 
   useEffect(() => {
-    if (keylessAccount) {
-      if (!keylessAccount.ephemeralKeyPair.isExpired()) {
-        setkeylessWalletAddress(keylessAccount.accountAddress.toString());
-      } else {
-        console.log(
-          "But the ephmeral keypair has expired. Returning user to the homepage to log in."
-        );
-        // window.location.href = "/auth/login";
-      }
-    } else {
-      console.log(
-        "No pre-existing Keyless account found. Returning user to the homepage to log in."
-      );
-      // window.location.href = "/auth/login";
+    if (keylessAccount && !keylessAccount.ephemeralKeyPair.isExpired()) {
+      setkeylessWalletAddress(keylessAccount.accountAddress.toString());
     }
-  });
+  }, [keylessAccount]);
 
   const [isSuccessFetchPlayer, setIsSuccessFetchPlayer] = useState(false);
   const [CreditInfor, setCreditInfor] = useState<number>(0);
