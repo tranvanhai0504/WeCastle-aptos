@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 // import { useWallet } from "@aptos-labs/wallet-adapter-react";
 import { useNavigate } from "react-router-dom";
+import { FcGoogle } from "react-icons/fc";
 
 import "../../App.css";
 import { EphemeralKeyPair } from "@aptos-labs/ts-sdk";
@@ -43,7 +44,7 @@ export const LoginPage = () => {
           className="mt-10 inline-flex items-center rounded-lg bg-white px-8 py-2 text-center text-2xl font-medium text-black shadow-sm shadow-white"
           onClick={logInWithGoogle}
         >
-          {/* <FcGoogle /> */}
+          <FcGoogle />
           <span className="ml-1">Sign in</span>
         </button>
       </div>

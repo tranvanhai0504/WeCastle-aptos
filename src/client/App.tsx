@@ -12,6 +12,7 @@ import HomeMobile from "./pages/homeMobile/HomeMobile";
 import Marketplace from "./pages/marketplace/Marketplace";
 import Document from "./pages/document/Document";
 import DailyTask from "./pages/DailyTask/DailyTask";
+import GoogleCallbackPage from "./pages/GoogleCallback";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
             <Route path="/" element={<HomeMobile />} />
           </Route>
         </Route>
+        <Route path="/googlecallback" element={<GoogleCallbackPage/>}/>
         <Route path="/auth" element={<AuthLayout />}>
           <Route path="login" element={<LoginPage />} />
         </Route>

@@ -102,60 +102,59 @@ const useContract = () => {
     onError,
     onFinally,
   }: useContractProps) => {
-    // const aptosConfig = new AptosConfig({
-    //   network: Network.TESTNET,
-    //   fullnode: "https://testnet.suzuka.movementnetwork.xyz/v1",
-    //   faucet: "https://faucet.testnet.suzuka.movementlabs.xyz/",
-    // });
-    // const aptos = new Aptos(aptosConfig);
-    // const privateKey = new Ed25519PrivateKey(ADMIN_PRIVATE_KEY);
-    // const adminAccount = Account.fromPrivateKey({ privateKey });
-    // if (!adminAccount) return;
-    // try {
-    //   setLoading(true);
-    //   setError(null);
-    //   console.log(adminAccount.accountAddress.toString());
-    //   //create txn
-    //   const txn = await aptos.transaction.build.simple({
-    //     sender: adminAccount.accountAddress,
-    //     data: {
-    //       function: `${MODULE_ADDRESS}::gamev1::${functionName}`,
-    //       functionArguments: functionArgs,
-    //     },
-    //     withFeePayer: true,
-    //   });
-    //   const adminSenderAuthenticator = await aptos.signAsFeePayer({
-    //     signer: adminAccount,
-    //     transaction: txn,
-    //   });
-    //   const pendingTransaction = await aptos.transaction.submit.simple({
-    //     transaction: txn,
-    //     feePayerAuthenticator: adminSenderAuthenticator,
-    //     senderAuthenticator: adminSenderAuthenticator,
-    //   });
-    //   const executedTransaction = await aptos.waitForTransaction({
-    //     transactionHash: pendingTransaction.hash,
-    //   });
-    //   console.log("Executed Transaction:", executedTransaction);
-    //   if (onSuccess) {
-    //     onSuccess(executedTransaction);
-    //   }
-    //   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    // } catch (error: any) {
-    //   console.log(error);
-    //   if (error.status === 400) {
-    //     window.location.reload();
-    //   }
-    //   setError(error.toString());
-    //   if (onError) {
-    //     onError(error);
-    //   }
-    // } finally {
-    //   setLoading(false);
-    //   if (onFinally) {
-    //     onFinally();
-    //   }
-    // }
+
+    const privateKey = new Ed25519PrivateKey(ADMIN_PRIVATE_KEY);
+    const adminAccount = Account.fromPrivateKey({ privateKey });
+    if (!adminAccount) return;
+    try {
+      setLoading(true);
+      setError(null);
+      console.log(adminAccount.accountAddress.toString());
+      //create txn
+      const txn = await aptos.transaction.build.simple({
+        sender: adminAccount.accountAddress,
+        data: {
+          function: `${MODULE_ADDRESS}::gamev1::${functionName}`,
+          functionArguments: functionArgs,
+        },
+        withFeePayer: true,
+      });
+      
+      const adminSenderAuthenticator = await aptos.signAsFeePayer({
+        signer: adminAccount,
+        transaction: txn,
+      });
+
+      const pendingTransaction = await aptos.transaction.submit.simple({
+        transaction: txn,
+        feePayerAuthenticator: adminSenderAuthenticator,
+        senderAuthenticator: adminSenderAuthenticator,
+      });
+
+      const executedTransaction = await aptos.waitForTransaction({
+        transactionHash: pendingTransaction.hash,
+      });
+
+      console.log("Executed Transaction:", executedTransaction);
+      if (onSuccess) {
+        onSuccess(executedTransaction);
+      }
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      console.log(error);
+      if (error.status === 400) {
+        window.location.reload();
+      }
+      setError(error.toString());
+      if (onError) {
+        onError(error);
+      }
+    } finally {
+      setLoading(false);
+      if (onFinally) {
+        onFinally();
+      }
+    }
   };
 
   const keylessTxFEBuildBESubmit = async (
@@ -163,7 +162,6 @@ const useContract = () => {
     functionArgs: any[],
     keylessAccount: KeylessAccount
   ): Promise<PendingTransactionResponse> => {
-    console.log("keylessTxFEBuildBESubmit");
     // Step 1. Build a feePayer tx with the user's input
     const simpleTx = await buildSimpleMoveCallTransaction(
       keylessAccount.accountAddress,
@@ -196,7 +194,7 @@ const useContract = () => {
       withFeePayer: true,
       data: {
         function: `${MODULE_ADDRESS}::gamev1::${functionName}`,
-        functionArguments: [functionArgs],
+        functionArguments: functionArgs,
       },
     });
   }

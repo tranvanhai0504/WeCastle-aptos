@@ -37,13 +37,13 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         console.log(
           "But the ephmeral keypair has expired. Returning user to the homepage to log in."
         );
-        window.location.href = "/auth/login";
+        // window.location.href = "/auth/login";
       }
     } else {
       console.log(
         "No pre-existing Keyless account found. Returning user to the homepage to log in."
       );
-      window.location.href = "/auth/login";
+      // window.location.href = "/auth/login";
     }
   });
 

@@ -1,5 +1,5 @@
 {
-  "name": "shinami-aptos-wallet-adapter-sample-code",
+  "name": "the-wecastle",
   "private": true,
   "version": "0.1.0",
   "type": "module",
@@ -10,13 +10,16 @@
   },
   "dependencies": {
     "@aptos-labs/ts-sdk": "^1.27.1",
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
     "@fontsource/vt323": "^5.1.0",
     "@mui/icons-material": "^5.16.1",
-    "@mui/material": "^5.16.1",
+    "@mui/material": "^5.16.7",
     "@react-oauth/google": "^0.12.1",
     "@shinami/clients": "^0.9.3",
     "@types/styled-components": "^5.1.34",
     "antd": "^5.20.6",
+    "autoprefixer": "^10.4.20",
     "axios": "^1.7.7",
     "clsx": "^2.1.1",
     "dotenv-flow": "^4.1.0",
@@ -45,8 +48,8 @@
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
     "nodemon": "^3.1.4",
-    "postcss": "^8.4.39",
-    "tailwindcss": "^3.4.6",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.13",
     "typescript": "^5.2.2",
     "vite": "^5.4.1"
   }

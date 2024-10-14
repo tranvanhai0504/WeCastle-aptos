@@ -54,11 +54,7 @@ const RequireAuth = () => {
   //   );
   // }
 
-  return auth?.keylessWalletAddress !== "" ? (
-    <Outlet />
-  ) : (
-    <Navigate to="/auth/login" state={{ from: location }} replace />
-  );
+  return <Outlet />;
 };
 
 export default RequireAuth;

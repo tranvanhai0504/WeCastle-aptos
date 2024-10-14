@@ -21,7 +21,7 @@ const LeaderboardModal: React.FC<LeaderboardModalProps> = ({
 
   useEffect(() => {
     const getLeaderboard = async () => {
-      const data = await fetchLeaderBoard(10);
+      const data = await fetchLeaderBoard(100);
       if (data) {
         setLeaderboard(data);
       }
@@ -37,24 +37,24 @@ const LeaderboardModal: React.FC<LeaderboardModalProps> = ({
     >
       <div className="flex w-3/4 flex-col items-center rounded-lg bg-[#222222] p-6 text-white">
         <h1 className="text-2xl">Leaderboard</h1>
-        <table className="w-full border-separate border-spacing-y-3 text-center">
-          <thead className="text-lg uppercase text-white">
+        <table className="w-full border-separate border-spacing-y-1 text-center">
+          <thead className="text-lg uppercase text-white table table-fixed w-full">
             <tr>
-              <th scope="col" className="py-3">
+              <th scope="col" className="py-2">
                 Rank
               </th>
               <th scope="col" className="py-2">
                 Name
               </th>
-              <th scope="col" className="py-3">
+              <th scope="col" className="py-2">
                 Point
               </th>
             </tr>
           </thead>
-          <tbody className="max-h-96 overflow-y-scroll">
+          <tbody className=" !max-h-52 overflow-y-scroll block hidden-scroll">
             {leaderboard?.map((row, index) => {
               return (
-                <tr className="rounded-full">
+                <tr className="rounded-full table table-fixed w-full">
                   <td
                     className={clsx(
                       "rounded-l-lg py-2",

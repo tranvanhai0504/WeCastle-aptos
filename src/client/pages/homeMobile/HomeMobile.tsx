@@ -35,14 +35,18 @@ const HomeMobile = () => {
   const [currentMap, setCurrentMap] = useState(1);
   const [selectedMap, setSelectedMap] = useState(1);
   const [expiryTimestamp, setExpiryTimestamp] = useState(new Date());
+  const [isClaiming, setIsClaiming] = useState(false);
   const { setAlert } = useAlert();
   const navigate = useNavigate();
 
   const handleClaimCredit = async () => {
     if (!auth?.keylessWalletAddress) return;
+    setIsClaiming(true);
     claimCredit().then(async () => {
       await auth?.fetchCreditInfor(auth.keylessWalletAddress);
       await auth?.fetchPlayerInfo(auth.keylessWalletAddress);
+      setIsClaiming(false);
+      setAlert("+3 Credit for play game!", "success")
     });
   };
 
@@ -148,9 +152,11 @@ const HomeMobile = () => {
               <button
                 className="w-full rounded-lg bg-mainColor py-1 text-2xl text-black disabled:cursor-not-allowed disabled:text-gray-500 disabled:opacity-80"
                 onClick={handleClaimCredit}
-                disabled={new Date() < expiryTimestamp}
+                disabled={new Date() < expiryTimestamp || isClaiming}
               >
-                Claim {new Date() > expiryTimestamp && "+3"}
+                {isClaiming
+                  ? "Claiming..."
+                  : `Claim ${new Date() > expiryTimestamp ? "+3" : ""}`}
               </button>
               <Timer expiryTimestamp={expiryTimestamp} />
             </div>

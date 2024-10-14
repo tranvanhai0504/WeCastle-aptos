@@ -5,6 +5,7 @@ import UnityGameComponent, { useUnityGame } from "../../hooks/useUnityGame";
 import useGame from "../../hooks/useGame";
 
 import EndGameModal from "../../components/EndGameModal/EndGameModal";
+// import RandomWheelModal from "../../components/RandonWheelModal/RandomWheelModal";
 import AuthContext from "../../contexts/AuthProvider";
 
 const PlayGame: React.FC = () => {
@@ -31,7 +32,7 @@ const PlayGame: React.FC = () => {
 
   return (
     <>
-      <EndGameModal open={isEndGameModalOpen} />
+      <EndGameModal  open={isEndGameModalOpen} />
       {!loadGame ? (
         <div className="h-full w-full">
           <UnityGameComponent setIsEndGameModalOpen={setIsEndGameModalOpen} />

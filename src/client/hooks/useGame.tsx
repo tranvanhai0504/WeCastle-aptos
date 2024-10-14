@@ -35,15 +35,19 @@ const useGame = () => {
     return true;
   };
 
-  const endGame = async (round: number, point: number): Promise<boolean> => {
+  const endGame = async (
+    round: number,
+    address: string,
+    point: number
+  ): Promise<boolean> => {
     if (round < 0 || round > MAX_ROUND) return false;
 
     try {
       setLoadingFetch(true);
 
-      await callContract({
+      await callAdminContract({
         functionName: `add_certificate_round${round}`,
-        functionArgs: [point],
+        functionArgs: [address, point],
         onSuccess(result) {
           return true;
         },

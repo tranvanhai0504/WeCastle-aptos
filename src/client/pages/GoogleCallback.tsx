@@ -17,7 +17,7 @@ const GoogleCallbackPage = () => {
         });
         console.log("Storing a KeylessAccount for the user.");
         storeKeylessAccount(keylessAccount);
-        window.location.href = "/transaction";
+        window.location.href = "/";
     }
     // Upon reaching this page when Google responds, obtain the JWT from the URL.
     const parseJWTFromURL = (url: string): string | null => {
@@ -48,7 +48,7 @@ const GoogleCallbackPage = () => {
         createKeylessAccountAndChangePage(jwt, ekp);
     } else {
         console.log("Could not obtain JWT from URL. Sending the user back to the homepage to try again.");
-        window.location.href = "/";
+        window.location.href = "/auth/login";
     }
 
     return (

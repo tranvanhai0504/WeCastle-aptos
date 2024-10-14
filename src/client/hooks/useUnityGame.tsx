@@ -25,20 +25,23 @@ const UnityGameComponent = forwardRef(
     const { endGame } = useGame();
     const auth = useContext(AuthContext);
 
-    const handleComponentEvent = ({
-      detail,
-    }: CustomEvent<{ Score: number }>) => {
-      const { Score } = detail;
+    const handleComponentEvent = useCallback(
+      ({ detail }: CustomEvent<{ Score: number }>) => {
+        const { Score } = detail;
 
-      if (!auth) return;
+        if (!auth) return;
 
-      const round =
-        auth.player.current_round !== 0 ? auth.player.current_round : 1;
+        console.log(auth.player);
 
-      endGame(round, Score).then((res) => {
-        props.setIsEndGameModalOpen(true);
-      });
-    };
+        const round =
+          auth.player.current_round !== 0 ? auth.player.current_round : 1;
+
+        endGame(round, auth.player.address_id, Score).then((res) => {
+          props.setIsEndGameModalOpen(true);
+        });
+      },
+      [auth?.player]
+    );
 
     useEffect(() => {
       // Add the event listener
@@ -54,7 +57,7 @@ const UnityGameComponent = forwardRef(
           handleComponentEvent as EventListener
         );
       };
-    }, []);
+    }, [handleComponentEvent]);
 
     return <UnityGame unityProvider={unityProvider} />;
   }

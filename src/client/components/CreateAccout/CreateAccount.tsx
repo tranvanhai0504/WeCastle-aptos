@@ -20,12 +20,7 @@ const CreateAccount = () => {
   useEffect(() => {
     if (!auth) return;
 
-    if (auth.keylessWalletAddress) {
-      window.location.href = "/";
-      return;
-    }
-
-    if (!auth.keylessWalletAddress) window.location.href = "/auth/login";
+    // if (!auth.keylessWalletAddress) window.location.href = "/auth/login";
   }, [auth]);
 
   const handleSubmit = async () => {

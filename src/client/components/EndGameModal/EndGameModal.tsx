@@ -7,22 +7,24 @@ interface EndGameModalProps {
 }
 
 const EndGameModal: React.FC<EndGameModalProps> = ({ open }) => {
-  const navigate = useNavigate();
 
   return (
     <Modal open={open} className="flex items-center justify-center">
-      <div className="flex w-3/4 items-center justify-around rounded-lg bg-[#222222] px-6 py-16 text-white">
-        <button
-          onClick={() => {
-            navigate("/playGame");
-          }}
-          className="rounded-lg bg-mainColor px-4 py-1"
-        >
-          Play Again
-        </button>
-        <Link to="/" className="rounded-lg bg-mainColor px-4 py-1">
-          Back to Home
-        </Link>
+      <div className="flex w-3/4 flex-col items-center justify-around rounded-lg bg-[#222222] px-6 py-10 text-white">
+        <h1 className="text-white text-2xl">Play Again?</h1>
+        <div className="w-full flex justify-around mt-5">
+          <button
+            onClick={() => {
+              location.reload();
+            }}
+            className="rounded-lg bg-mainColor px-4 py-1"
+          >
+            Play Again
+          </button>
+          <Link to="/" className="rounded-lg bg-mainColor px-4 py-1">
+            Back to Home
+          </Link>
+        </div>
       </div>
     </Modal>
   );

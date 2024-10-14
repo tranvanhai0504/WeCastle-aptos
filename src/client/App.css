@@ -1,6 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* 
+@font-face {
+  font-family: 'Nord';
+  src: url('/font/TTF/Nord-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Nord';
+  src: url('/font/TTF/Nord-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Nord';
+  src: url('/font/TTF/Nord-Italic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+} */
+
+.vt323-regular {
+  font-family: "VT323", monospace !important;
+  font-weight: 400;
+  font-style: normal;
+}
+
+body, html {
+  font-family: 'VT323', monospace !important;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  font-size: 14px;
+  line-height: 1.5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+    /* cursor: url('cursor2.png'), auto; */
+    font-family: 'Nord', sans-serif;
+
+}
+
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  height: 100%;
+  width: 100%;
+}
+
+#login{
+  background-color: black;
+  background: 
+  radial-gradient(
+    72.4% 40.52% at 50% 50%,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(0, 0, 0, 0.6) 100%
+  ), url('/background.png');
+  background-size: cover; /* This will make the background cover the entire area */
+  background-position: center; /* This centers the background image */
+}
+
+.pixel-button {
+  box-shadow:   -2px 0 0 0 black,
+                 2px 0 0 0 black,
+                 0 -2px 0 0 black,
+                 0 2px 0 0 black;
+}
+
+.pixel-button-white {
+  box-shadow:   -2px 0 0 0 white,
+                 2px 0 0 0 white,
+                 0 -2px 0 0 white,
+                 0 2px 0 0 white;
+} 
+
+
+.hidden-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.hidden-scroll {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
