@@ -2,7 +2,7 @@ import express from "express";
 import ViteExpress from "vite-express";
 import { GasStationClient } from "@shinami/clients/aptos";
 import dotenvFlow from "dotenv-flow";
-import cors from "cors";
+var cors = require("cors");
 
 import {
   Aptos,
@@ -37,9 +37,8 @@ const gasClient = new GasStationClient(
 
 // initialize our server
 const app = express();
-app.use(express.json());
-
 app.use(cors());
+app.use(express.json());
 
 ViteExpress.listen(app, 3000, () =>
   console.log("Server is listening on port 3000...")
