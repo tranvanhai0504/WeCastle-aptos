@@ -27,6 +27,8 @@ const UnityGameComponent = forwardRef(
 
     const handleComponentEvent = useCallback(
       ({ detail }: CustomEvent<{ Score: number }>) => {
+
+        console.log("call event")
         const { Score } = detail;
 
         if (!auth) return;

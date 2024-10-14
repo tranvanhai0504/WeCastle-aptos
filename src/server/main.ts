@@ -3,6 +3,7 @@ import ViteExpress from "vite-express";
 import { GasStationClient } from "@shinami/clients/aptos";
 import dotenvFlow from "dotenv-flow";
 import cors from "cors";
+import type { VercelRequest, VercelResponse } from '@vercel/node';
 
 import {
   Aptos,
