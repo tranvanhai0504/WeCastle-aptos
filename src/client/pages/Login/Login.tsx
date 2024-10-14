@@ -12,10 +12,13 @@ export const LoginPage = () => {
   const navigate = useNavigate();
   const keylessAccount = getLocalKeylessAccount();
 
+  useEffect(() => {
+    if (keylessAccount && !keylessAccount?.ephemeralKeyPair.isExpired()) {
+      navigate("/");
+    }
+  }, [keylessAccount]);
+
   // When a user visits, we check to see if there is an existing, valid KeylessAccount from a previous visit
-  if (keylessAccount && keylessAccount?.ephemeralKeyPair.isExpired()) {
-    navigate("/");
-  }
 
   // 1. Create and store a new ephemeral keypair
   // 2. Redirect the user to Google's OAuth login flow. The user will then be redirected back

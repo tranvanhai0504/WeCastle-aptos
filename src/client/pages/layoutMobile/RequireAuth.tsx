@@ -2,12 +2,21 @@ import { useEffect, useState, useContext } from "react";
 import { Navigate, Outlet, useLocation, useNavigate } from "react-router-dom";
 // import { useWallet } from "@aptos-labs/wallet-adapter-react";
 import AuthContext from "../../contexts/AuthProvider";
+import { getLocalKeylessAccount } from "../../keyless";
 
 const RequireAuth = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [progress, setProgress] = useState(0);
   const auth = useContext(AuthContext);
+
+  const keylessAccount = getLocalKeylessAccount();
+
+  useEffect(() => {
+    if (!keylessAccount || keylessAccount.ephemeralKeyPair.isExpired()) {
+      window.location.href = "/auth/login";
+    }
+  }, [keylessAccount]);
 
   useEffect(() => {
     if (auth?.keylessWalletAddress !== "") {
