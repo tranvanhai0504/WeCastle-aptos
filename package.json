@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon -w src/server -x tsx src/server/main.ts",
-    "start": "NODE_ENV=production tsx src/server/main.ts",
+    "start": "tsx src/server/main.ts",
     "build": "vite build"
   },
   "dependencies": {
